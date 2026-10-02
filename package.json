@@ -18,7 +18,8 @@
     "test_stress_all": "node src/test-universal-stress.js",
     "test_launch_all": "node src/test-launch-all.js",
     "analyze": "node src/analyze.js",
-    "web": "node src/web-server.js"
+    "web": "node src/web-server.js",
+    "start": "node src/web-server.js"
   },
   "keywords": [],
   "author": "",

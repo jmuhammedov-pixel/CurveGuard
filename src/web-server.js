@@ -4,8 +4,16 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { spawn } from "node:child_process";
 
-const HOST = "127.0.0.1";
-const PORT = 8787;
+const HOST =
+  process.env.HOST ||
+  "127.0.0.1";
+
+const PORT =
+  Number.parseInt(
+    process.env.PORT ||
+    "8787",
+    10
+  );
 
 const ROOT =
   process.cwd();
@@ -663,14 +671,29 @@ server.listen(
     );
 
     console.log("");
-    console.log(
-      `Open: http://${HOST}:${PORT}`
-    );
 
-    console.log("");
-    console.log(
-      "Local-only server."
-    );
+    if (
+      HOST === "127.0.0.1" ||
+      HOST === "localhost"
+    ) {
+      console.log(
+        `Open: http://${HOST}:${PORT}`
+      );
+
+      console.log("");
+      console.log(
+        "Local development mode."
+      );
+    } else {
+      console.log(
+        `Listening on ${HOST}:${PORT}`
+      );
+
+      console.log("");
+      console.log(
+        "Cloud deployment mode."
+      );
+    }
 
     console.log(
       "No wallet or transaction permissions."
