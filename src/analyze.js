@@ -21,12 +21,21 @@ import {
   buildRecommendations
 } from "./recommendations.js";
 
+const CURVEGUARD_VERSION =
+  "1.0.0";
+
+const CURVEGUARD_EDITION =
+  "Competition Edition";
+
 const input =
   process.argv[2] ||
   "config/dbc_config.jsonc";
 
 const sourcePath =
   path.resolve(input);
+
+const sourceDisplayName =
+  path.basename(sourcePath);
 
 if (
   !fs.existsSync(sourcePath)
@@ -202,7 +211,7 @@ console.log(
 );
 
 console.log(
-  " CURVEGUARD v0.9 ONE-CLICK ANALYZER"
+  " CURVEGUARD COMPETITION EDITION v1.0 ANALYZER"
 );
 
 console.log(
@@ -927,7 +936,7 @@ const sourceConfigUnchanged =
 
 const unified = {
   curveGuardVersion:
-    "0.9.0",
+    CURVEGUARD_VERSION,
 
   generatedAt:
     new Date().toISOString(),
@@ -936,7 +945,7 @@ const unified = {
 
   source: {
     path:
-      sourcePath,
+      sourceDisplayName,
 
     sha256Before:
       sourceHashBefore,
@@ -1215,7 +1224,7 @@ const html = `<!doctype html>
   content="width=device-width,initial-scale=1"
 >
 
-<title>CurveGuard v0.9.2 Report</title>
+<title>CurveGuard Competition Edition v1.0 Report</title>
 
 <style>
 :root {
@@ -1495,7 +1504,7 @@ code {
   </div>
 
   <div class="version">
-    Meteora DBC Pre-Launch Stress Lab - v0.9.2</div>
+    Meteora DBC Pre-Launch Stress Lab - Competition Edition v1.0</div>
 </div>
 
 <div class="badge">
@@ -1777,7 +1786,7 @@ ${htmlEscape(runId)}
 <br>
 
 Source:
-${htmlEscape(sourcePath)}
+${htmlEscape(sourceDisplayName)}
 
 <br>
 
