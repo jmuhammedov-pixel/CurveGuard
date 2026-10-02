@@ -2,6 +2,9 @@
 
 **Pre-Launch Stress Lab for Meteora Dynamic Bonding Curve (DBC)**
 
+**Live Demo:** https://curveguard-meteora.onrender.com
+**GitHub:** https://github.com/jmuhammedov-pixel/CurveGuard
+
 CurveGuard is developer tooling for inspecting and stress-testing a Meteora DBC configuration before launch.
 
 ## Competition Edition
