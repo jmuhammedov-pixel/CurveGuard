@@ -1,0 +1,1105 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+CurveGuard Competition Edition
+</title>
+
+<style>
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  min-height:
+    100vh;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+
+  color:
+    #edf3ff;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      #19264d,
+      #080d18 46%
+    );
+}
+
+main {
+  width:
+    min(
+      1000px,
+      calc(100% - 36px)
+    );
+
+  margin:
+    0 auto;
+
+  padding:
+    64px 0 80px;
+}
+
+header {
+  margin-bottom:
+    34px;
+}
+
+.brand {
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      64px
+    );
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    -2px;
+}
+
+.subtitle {
+  margin-top:
+    8px;
+
+  color:
+    #91a5cc;
+
+  font-size:
+    17px;
+}
+
+.badges {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    8px;
+
+  margin-top:
+    18px;
+}
+
+.badge {
+  border:
+    1px solid
+    #30405f;
+
+  border-radius:
+    999px;
+
+  padding:
+    7px 11px;
+
+  color:
+    #afc3e8;
+
+  background:
+    #111a2c;
+
+  font-size:
+    12px;
+}
+
+.panel {
+  border:
+    1px solid
+    #273654;
+
+  border-radius:
+    20px;
+
+  padding:
+    28px;
+
+  background:
+    rgba(
+      15,
+      24,
+      41,
+      .94
+    );
+}
+
+.drop {
+  min-height:
+    270px;
+
+  border:
+    2px dashed
+    #40537a;
+
+  border-radius:
+    18px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
+
+  padding:
+    36px;
+
+  transition:
+    .18s ease;
+
+  cursor:
+    pointer;
+}
+
+.drop.active {
+  border-color:
+    #84a9ff;
+
+  background:
+    rgba(
+      76,
+      111,
+      183,
+      .10
+    );
+}
+
+.icon {
+  font-size:
+    44px;
+
+  margin-bottom:
+    18px;
+}
+
+.drop h2 {
+  margin:
+    0;
+
+  font-size:
+    24px;
+}
+
+.drop p {
+  color:
+    #94a6c7;
+
+  margin:
+    10px 0 0;
+}
+
+input[type=file] {
+  display:
+    none;
+}
+
+.actions {
+  display:
+    flex;
+
+  gap:
+    12px;
+
+  flex-wrap:
+    wrap;
+
+  margin-top:
+    20px;
+}
+
+button {
+  border:
+    0;
+
+  border-radius:
+    12px;
+
+  padding:
+    13px 18px;
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+}
+
+.choose {
+  background:
+    #1b2944;
+
+  color:
+    #dae6ff;
+
+  border:
+    1px solid
+    #35486d;
+}
+
+.analyze {
+  background:
+    #eaf1ff;
+
+  color:
+    #07101f;
+
+  min-width:
+    170px;
+}
+
+.analyze:disabled {
+  opacity:
+    .45;
+
+  cursor:
+    not-allowed;
+}
+
+.file {
+  margin-top:
+    18px;
+
+  border-radius:
+    12px;
+
+  padding:
+    13px 15px;
+
+  background:
+    #0b1321;
+
+  border:
+    1px solid
+    #22314e;
+
+  display:
+    none;
+}
+
+.file strong {
+  display:
+    block;
+}
+
+.file span {
+  color:
+    #8498bc;
+
+  font-size:
+    13px;
+}
+
+.status {
+  margin-top:
+    18px;
+
+  min-height:
+    24px;
+
+  color:
+    #9eb2d6;
+}
+
+.status.success {
+  color:
+    #7fe6ac;
+}
+
+.status.error {
+  color:
+    #ff909b;
+}
+
+.progress {
+  margin-top:
+    16px;
+
+  display:
+    none;
+
+  height:
+    5px;
+
+  border-radius:
+    999px;
+
+  overflow:
+    hidden;
+
+  background:
+    #17233a;
+}
+
+.progress div {
+  height:
+    100%;
+
+  width:
+    35%;
+
+  background:
+    #9dbaff;
+
+  animation:
+    move 1.1s
+    infinite ease-in-out;
+}
+
+@keyframes move {
+
+  0% {
+    transform:
+      translateX(-120%);
+  }
+
+  100% {
+    transform:
+      translateX(400%);
+  }
+}
+
+.info {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        210px,
+        1fr
+      )
+    );
+
+  gap:
+    14px;
+
+  margin-top:
+    20px;
+}
+
+.info-card {
+  border:
+    1px solid
+    #253451;
+
+  border-radius:
+    14px;
+
+  background:
+    #10192a;
+
+  padding:
+    17px;
+}
+
+.info-card b {
+  display:
+    block;
+
+  margin-bottom:
+    6px;
+}
+
+.info-card span {
+  color:
+    #889bbb;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.5;
+}
+
+.demo-section {
+  margin-top: 26px;
+}
+
+.demo-title {
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.demo-subtitle {
+  margin-bottom: 14px;
+  color: #8498bc;
+  font-size: 13px;
+}
+
+.demo-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        200px,
+        1fr
+      )
+    );
+
+  gap: 10px;
+}
+
+.demo {
+  border: 1px solid #293957;
+  border-radius: 13px;
+  padding: 14px;
+  background: #101a2c;
+  color: #dbe7ff;
+  text-align: left;
+}
+
+.demo:hover {
+  border-color: #5673a7;
+  background: #14213a;
+}
+
+.demo strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.demo small {
+  color: #8295b8;
+}
+
+footer {
+  color:
+    #7184a7;
+
+  font-size:
+    12px;
+
+  margin-top:
+    26px;
+
+  line-height:
+    1.6;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main>
+
+<header>
+
+<div class="brand">
+CurveGuard
+</div>
+
+<div class="subtitle">
+Meteora DBC Pre-Launch Stress Lab
+</div>
+
+<div class="badges">
+
+<div class="badge">
+6 Curve Modes
+</div>
+
+<div class="badge">
+Dynamic Fee Simulation
+</div>
+
+<div class="badge">
+Precision Advisor
+</div>
+
+<div class="badge">
+Dry-Run First
+</div>
+
+</div>
+
+</header>
+
+<div class="panel">
+
+<div
+  id="drop"
+  class="drop"
+>
+
+<div class="icon">
+◫
+</div>
+
+<h2>
+Drop your Meteora DBC config here
+</h2>
+
+<p>
+Supports .json and .jsonc configuration files
+</p>
+
+</div>
+
+<input
+  id="fileInput"
+  type="file"
+  accept=".json,.jsonc,application/json"
+>
+
+<div
+  id="fileInfo"
+  class="file"
+>
+
+<strong id="fileName"></strong>
+
+<span id="fileSize"></span>
+
+</div>
+
+<div class="actions">
+
+<button
+  id="chooseButton"
+  class="choose"
+>
+Choose File
+</button>
+
+<button
+  id="analyzeButton"
+  class="analyze"
+  disabled
+>
+Analyze Curve
+</button>
+
+</div>
+
+<div
+  id="progress"
+  class="progress"
+>
+<div></div>
+</div>
+
+<div
+  id="status"
+  class="status"
+>
+Select a DBC config to begin.
+</div>
+
+</div>
+
+<div class="demo-section">
+
+<div class="demo-title">
+Try a demo configuration
+</div>
+
+<div class="demo-subtitle">
+Explore all six Meteora DBC curve-building modes without uploading a file.
+</div>
+
+<div class="demo-grid">
+
+<button class="demo"
+        data-demo="0-standard-quote-threshold.json">
+<strong>Standard Quote Threshold</strong>
+<small>Mode 0</small>
+</button>
+
+<button class="demo"
+        data-demo="1-market-cap.json">
+<strong>Market Cap</strong>
+<small>Mode 1</small>
+</button>
+
+<button class="demo"
+        data-demo="2-two-segment.json">
+<strong>Two Segment</strong>
+<small>Mode 2</small>
+</button>
+
+<button class="demo"
+        data-demo="3-liquidity-weights.json">
+<strong>Liquidity Weights</strong>
+<small>Mode 3</small>
+</button>
+
+<button class="demo"
+        data-demo="4-mid-price.json">
+<strong>Mid Price</strong>
+<small>Mode 4</small>
+</button>
+
+<button class="demo"
+        data-demo="5-custom-prices.json">
+<strong>Custom Prices</strong>
+<small>Mode 5</small>
+</button>
+
+</div>
+
+</div>
+
+<div class="info">
+
+<div class="info-card">
+
+<b>
+What CurveGuard checks
+</b>
+
+<span>
+Configuration risk, launch-state stress,
+sequential market pressure,
+dynamic fees and volatility.
+</span>
+
+</div>
+
+<div class="info-card">
+
+<b>
+Safe by default
+</b>
+
+<span>
+Analysis uses a dry-run copy.
+Your original config is not modified.
+</span>
+
+</div>
+
+<div class="info-card">
+
+<b>
+No transactions
+</b>
+
+<span>
+This Competition Edition analysis
+does not create, sign or submit
+a blockchain transaction.
+</span>
+
+</div>
+
+</div>
+
+<footer>
+
+CurveGuard diagnostics are not an official Meteora protocol rating
+and are not a prediction of token performance.
+
+</footer>
+
+</main>
+
+<script>
+
+const drop =
+  document.getElementById(
+    "drop"
+  );
+
+const input =
+  document.getElementById(
+    "fileInput"
+  );
+
+const choose =
+  document.getElementById(
+    "chooseButton"
+  );
+
+const analyze =
+  document.getElementById(
+    "analyzeButton"
+  );
+
+const fileInfo =
+  document.getElementById(
+    "fileInfo"
+  );
+
+const fileName =
+  document.getElementById(
+    "fileName"
+  );
+
+const fileSize =
+  document.getElementById(
+    "fileSize"
+  );
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+const progress =
+  document.getElementById(
+    "progress"
+  );
+
+let selectedFile =
+  null;
+
+let selectedContent =
+  null;
+
+let selectedName =
+  null;
+
+function setFile(file) {
+
+  if (!file) {
+    return;
+  }
+
+  const lower =
+    file.name
+      .toLowerCase();
+
+  if (
+    !lower.endsWith(
+      ".json"
+    ) &&
+    !lower.endsWith(
+      ".jsonc"
+    )
+  ) {
+    status.className =
+      "status error";
+
+    status.textContent =
+      "Please select a .json or .jsonc file.";
+
+    return;
+  }
+
+  selectedFile =
+    file;
+
+  selectedContent =
+    null;
+
+  selectedName =
+    file.name;
+
+  fileName.textContent =
+    file.name;
+
+  fileSize.textContent =
+    `${(
+      file.size /
+      1024
+    ).toFixed(1)} KB`;
+
+  fileInfo.style.display =
+    "block";
+
+  analyze.disabled =
+    false;
+
+  status.className =
+    "status";
+
+  status.textContent =
+    "Config ready for analysis.";
+}
+
+choose.addEventListener(
+  "click",
+  () =>
+    input.click()
+);
+
+drop.addEventListener(
+  "click",
+  () =>
+    input.click()
+);
+
+input.addEventListener(
+  "change",
+  () =>
+    setFile(
+      input.files[0]
+    )
+);
+
+for (
+  const event of [
+    "dragenter",
+    "dragover"
+  ]
+) {
+  drop.addEventListener(
+    event,
+    e => {
+
+      e.preventDefault();
+
+      drop.classList.add(
+        "active"
+      );
+    }
+  );
+}
+
+for (
+  const event of [
+    "dragleave",
+    "drop"
+  ]
+) {
+  drop.addEventListener(
+    event,
+    e => {
+
+      e.preventDefault();
+
+      drop.classList.remove(
+        "active"
+      );
+    }
+  );
+}
+
+drop.addEventListener(
+  "drop",
+  e => {
+
+    const file =
+      e.dataTransfer
+        ?.files?.[0];
+
+    setFile(file);
+  }
+);
+
+document
+  .querySelectorAll(
+    ".demo"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        async () => {
+
+          const demo =
+            button.dataset.demo;
+
+          status.className =
+            "status";
+
+          status.textContent =
+            "Loading demo configuration...";
+
+          try {
+
+            const response =
+              await fetch(
+                `/demos/${demo}`
+              );
+
+            if (!response.ok) {
+              throw new Error(
+                "Demo configuration could not be loaded."
+              );
+            }
+
+            selectedContent =
+              await response.text();
+
+            selectedFile =
+              null;
+
+            selectedName =
+              demo;
+
+            fileName.textContent =
+              button
+                .querySelector(
+                  "strong"
+                )
+                .textContent;
+
+            fileSize.textContent =
+              "Built-in Competition Demo";
+
+            fileInfo.style.display =
+              "block";
+
+            analyze.disabled =
+              false;
+
+            status.className =
+              "status success";
+
+            status.textContent =
+              "Demo ready. Click Analyze Curve.";
+
+          } catch (err) {
+
+            status.className =
+              "status error";
+
+            status.textContent =
+              err?.message ||
+              "Demo loading failed.";
+          }
+        }
+      );
+    }
+  );
+
+analyze.addEventListener(
+  "click",
+  async () => {
+
+    if (
+      !selectedFile &&
+      !selectedContent
+    ) {
+      return;
+    }
+
+    analyze.disabled =
+      true;
+
+    choose.disabled =
+      true;
+
+    progress.style.display =
+      "block";
+
+    status.className =
+      "status";
+
+    status.textContent =
+      "Running CurveGuard analysis...";
+
+    try {
+
+      const content =
+        selectedContent !== null
+          ? selectedContent
+          : await selectedFile.text();
+
+      const response =
+        await fetch(
+          "/api/analyze",
+          {
+            method:
+              "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body:
+              JSON.stringify({
+                filename:
+                  selectedName ||
+                  selectedFile?.name ||
+                  "demo.json",
+
+                content
+              })
+          }
+        );
+
+      const result =
+        await response.json();
+
+      if (
+        !response.ok ||
+        !result.ok
+      ) {
+        throw new Error(
+          result.error ||
+          "Analysis failed."
+        );
+      }
+
+      status.className =
+        "status success";
+
+      status.textContent =
+        "Analysis complete. Opening dashboard...";
+
+      window.location.href =
+        result.dashboardUrl;
+
+    } catch (err) {
+
+      status.className =
+        "status error";
+
+      status.textContent =
+        err?.message ||
+        "Analysis failed.";
+
+      analyze.disabled =
+        false;
+
+      choose.disabled =
+        false;
+
+      progress.style.display =
+        "none";
+    }
+  }
+);
+
+</script>
+
+</body>
+</html>
